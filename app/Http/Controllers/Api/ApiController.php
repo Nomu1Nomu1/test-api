@@ -10,23 +10,8 @@ class ApiController extends Controller
 {
     public function product()
     {
-        $data = barang::select('id', 'kode', 'nama', 'id_satuan', 'id_kategori', 'harga_jual')
-            ->get()
-            ->map(function ($item){
-                return [
-                    'id' => $item->id,
-                    'kode' => $item->kode,
-                    'nama' => $item->nama,
-                    'id_satuan' => $item->id_satuan,
-                    'id_kategori' => $item->id_kategori,
-                    'harga_jual' => $item->harga_jual
-                ];
-            });
+        $data = barang::get();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data berhasil diambil',
-            'data' => $data
-        ]);
+        return response()->json($data);
     }
 }
